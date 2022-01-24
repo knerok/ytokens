@@ -24,8 +24,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2.4.0
       # Bump version
       - run: npm version patch
       # Add files that were created during a run, e.g. created files from style dictionary or token-transformer.
