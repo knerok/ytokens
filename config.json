@@ -5,8 +5,7 @@
       "transformGroup": "css",
       "files": [
         {
-          "buildPath": "dist/",
-          "destination": "variables.css",
+          "destination": "dist/variables.css",
           "format": "css/variables"
         }
       ]
