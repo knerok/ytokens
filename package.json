@@ -1,0 +1,12 @@
+{
+    "name": "@knerok/vue-treeselect",
+    "version": "0.1.0",
+    "description": "Yclients design tokens",
+    "author": "knerok",
+    "license": "MIT",
+    "css": "dist/variables.css",
+    "files": [
+      "dist"
+    ],
+    "scripts": {}
+}
