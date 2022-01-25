@@ -11,16 +11,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
       - name: Setup Node.js environment
         uses: actions/setup-node@v2
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
+
       - name: Transform Figma Tokens JSON to something Style Dictionary can read
         run: npx token-transformer tokens.json tokens.json
+
       - name: Convert tokens according to Style Dictionary config
         run: npx style-dictionary build --config config.json
-      - run: git status
+
       - name: Cache tokens
         uses: actions/cache@v2
         with:
@@ -33,20 +36,31 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: git config --global user.name "GitHub CD bot"
-      - run: git config --global user.email "<>"
+      - run: |
+          git config --global user.name "GitHub CD bot"
+          git config --global user.email "<>"
+
       - name: Setup Node.js environment
         uses: actions/setup-node@v2
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
+
       - name: Get cached tokens
         uses: actions/cache@v2
         with:
           path: dist
           key: ${{ runner.os }}-build-${{ hashFiles('**/package.json') }}
+
       - name: Bump version and commit
         run: npm version patch
-      - run: git push
+
+      - name: Publish
+        run: npm publish --access=public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}-
+
+      - name: Push the version changes to GitHub
+        run: git push
         env:
           github-token: ${{ secrets.GIT_TOKEN }}
