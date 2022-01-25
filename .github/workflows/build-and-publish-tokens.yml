@@ -8,7 +8,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Setup Node.js environment
-        uses: actions/setup-node@v2.4.0
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
       # Transform Figma Tokens JSON to something Style Dictionary can read
       - run: npx token-transformer tokens.json tokens.json
       # Convert tokens according to Style Dictionary config
@@ -24,6 +27,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Setup Node.js environment
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
       # Bump version
       - run: npm version patch
       # Add files that were created during a run, e.g. created files from style dictionary or token-transformer.
