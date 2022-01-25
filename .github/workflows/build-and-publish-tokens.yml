@@ -23,6 +23,16 @@ jobs:
           path: ~/dist
           key: ${{ runner.os }}-build-${{ hashFiles('**/package.json') }}
       - run: git status
+      - id: filess
+        uses: jitterbit/get-changed-files@v1
+      - run: |
+          for changed_file in ${{ steps.filess.outputs.all }}; do
+            echo "Do something with this ${changed_file}."
+          done
+      - run: |
+          ls -la
+          cd ./dist
+          ls -la
 
   publish:
     needs: build
