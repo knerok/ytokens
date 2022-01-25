@@ -24,11 +24,15 @@ jobs:
       - name: Convert tokens according to Style Dictionary config
         run: npx style-dictionary build --config config.json
 
+      - run: git status
+
       - name: Cache tokens
         uses: actions/cache@v2
         with:
           path: dist
           key: ${{ runner.os }}-build-${{ hashFiles('**/package.json') }}
+
+      - run: git status
 
   publish:
     needs: build
