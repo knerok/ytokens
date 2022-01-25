@@ -19,7 +19,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Transform Figma Tokens JSON to something Style Dictionary can read
-        run: npx token-transformer tokens.json tokens.json
+        run: npx token-transformer tokens.json tokens/input.json
 
       - name: Convert tokens according to Style Dictionary config
         run: npx style-dictionary build --config config.json
