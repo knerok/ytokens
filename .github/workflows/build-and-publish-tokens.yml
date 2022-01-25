@@ -42,7 +42,7 @@ jobs:
           path: dist
           key: ${{ runner.os }}-build-${{ hashFiles('**/package.json') }}
       - name: Bump version and commit
-      - run: npm version patch
+        run: npm version patch
       - run: git status
       - name: Read package.json
         id: package
