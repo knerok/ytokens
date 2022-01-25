@@ -37,6 +37,13 @@ jobs:
       - run: git config --global user.email "github-cd-bot@example.com"
       # Bump version
       - run: npm version patch
+      - name: Read package.json
+        id: package
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./package.json
+      - name: Echo package.json
+        run: echo "${{ steps.package.outputs.content }}"
       # Add files that were created during a run, e.g. created files from style dictionary or token-transformer.
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
