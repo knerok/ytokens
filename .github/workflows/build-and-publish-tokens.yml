@@ -38,6 +38,7 @@ jobs:
       - run: git status
       # Bump version
       - run: npm version patch
+      - run: git status
       - name: Read package.json
         id: package
         uses: juliangruber/read-file-action@v1
