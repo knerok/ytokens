@@ -20,8 +20,8 @@ jobs:
       - name: Cache tokens
         uses: actions/cache@v2
         with:
-          path: ~/dist
-          key: ${{ runner.os }}-build-1-${{ hashFiles('**/package.json') }}
+          path: dist
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package.json') }}
       - run: git status
       - id: filess
         uses: jitterbit/get-changed-files@v1
@@ -50,8 +50,8 @@ jobs:
       - run: git status
       - uses: actions/cache@v2
         with:
-          path: ~/dist
-          key: ${{ runner.os }}-build-1-${{ hashFiles('**/package.json') }}
+          path: dist
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package.json') }}
       - run: |
           ls -la
           cd ./dist
