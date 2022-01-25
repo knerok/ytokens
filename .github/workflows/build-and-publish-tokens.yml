@@ -23,6 +23,7 @@ jobs:
           key: ${{ runner.os }}-build-${{ hashFiles('**/package.json') }}
 
   publish:
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
