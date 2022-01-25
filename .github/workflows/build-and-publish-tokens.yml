@@ -12,27 +12,16 @@ jobs:
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
-      # Transform Figma Tokens JSON to something Style Dictionary can read
-      - run: npx token-transformer tokens.json tokens.json
-      # Convert tokens according to Style Dictionary config
-      - run: npx style-dictionary build --config config.json
+      - name: Transform Figma Tokens JSON to something Style Dictionary can read
+        run: npx token-transformer tokens.json tokens.json
+      - name: Convert tokens according to Style Dictionary config
+        run: npx style-dictionary build --config config.json
       - run: git status
       - name: Cache tokens
         uses: actions/cache@v2
         with:
           path: dist
           key: ${{ runner.os }}-build-${{ hashFiles('**/package.json') }}
-      - run: git status
-      - id: filess
-        uses: jitterbit/get-changed-files@v1
-      - run: |
-          for changed_file in ${{ steps.filess.outputs.all }}; do
-            echo "Do something with this ${changed_file}."
-          done
-      - run: |
-          ls -la
-          cd ./dist
-          ls -la
 
   publish:
     needs: build
@@ -47,17 +36,12 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: git config --global user.name "GitHub CD bot"
       - run: git config --global user.email "<>"
-      - run: git status
-      - uses: actions/cache@v2
+      - name: Get cached tokens
+        uses: actions/cache@v2
         with:
           path: dist
           key: ${{ runner.os }}-build-${{ hashFiles('**/package.json') }}
-      - run: |
-          ls -la
-          cd ./dist
-          ls -la
-      - run: git status
-      # Bump version
+      - name: Bump version and commit
       - run: npm version patch
       - run: git status
       - name: Read package.json
@@ -67,9 +51,6 @@ jobs:
           path: ./package.json
       - name: Echo package.json
         run: echo "${{ steps.package.outputs.content }}"
-      - id: files
-        uses: jitterbit/get-changed-files@v1
-      - run: |
-          for changed_file in ${{ steps.files.outputs.all }}; do
-            echo "Do something with this ${changed_file}."
-          done
+      - run: git push
+        env:
+          github-token: ${{ secrets.GIT_TOKEN }}
