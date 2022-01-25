@@ -1,5 +1,9 @@
 name: CI
-on: [push]
+on:
+  push:
+    paths:
+      - 'tokens.json'
+      - 'package.json'
 
 jobs:
   build:
@@ -43,14 +47,6 @@ jobs:
           key: ${{ runner.os }}-build-${{ hashFiles('**/package.json') }}
       - name: Bump version and commit
         run: npm version patch
-      - run: git status
-      - name: Read package.json
-        id: package
-        uses: juliangruber/read-file-action@v1
-        with:
-          path: ./package.json
-      - name: Echo package.json
-        run: echo "${{ steps.package.outputs.content }}"
       - run: git push
         env:
           github-token: ${{ secrets.GIT_TOKEN }}
