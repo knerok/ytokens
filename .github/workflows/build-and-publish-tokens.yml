@@ -16,11 +16,13 @@ jobs:
       - run: npx token-transformer tokens.json tokens.json
       # Convert tokens according to Style Dictionary config
       - run: npx style-dictionary build --config config.json
+      - run: git status
       - name: Cache tokens
         uses: actions/cache@v2
         with:
-          path: ~/tokens
+          path: ~/dist
           key: ${{ runner.os }}-build-${{ hashFiles('**/package.json') }}
+      - run: git status
 
   publish:
     needs: build
@@ -35,6 +37,11 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: git config --global user.name "GitHub CD bot"
       - run: git config --global user.email "<>"
+      - run: git status
+      - uses: actions/cache@v2
+        with:
+          path: ~/dist
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package.json') }}
       - run: git status
       # Bump version
       - run: npm version patch
@@ -52,7 +59,3 @@ jobs:
           for changed_file in ${{ steps.files.outputs.all }}; do
             echo "Do something with this ${changed_file}."
           done
-      # Add files that were created during a run, e.g. created files from style dictionary or token-transformer.
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Update Tokens
