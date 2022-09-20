@@ -22,7 +22,7 @@ jobs:
         run: npx token-transformer tokens.json tokens/input.json
 
       - name: Convert tokens according to Style Dictionary config
-        run: npx style-dictionary build --config config.json
+        run: npx style-dictionary build --config config.js
 
       - run: git status
 
@@ -60,7 +60,7 @@ jobs:
 
       - name: Bump version and commit
         run: npm version patch
-        
+
       - run: git status
 
       - name: Publish
