@@ -8,5 +8,10 @@
     "files": [
         "dist"
     ],
-    "scripts": {}
+    "scripts": {
+        "build-scss-variables": "node build.js"
+    },
+    "devDependencies": {
+        "style-dictionary": "3.7.1"
+    }
 }

@@ -18,11 +18,14 @@ jobs:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Install node modules
+        run: npm install
+
       - name: Transform Figma Tokens JSON to something Style Dictionary can read
         run: npx token-transformer tokens.json tokens/input.json
 
       - name: Convert tokens according to Style Dictionary config
-        run: npx style-dictionary build --config config.js
+        run: npm run build-scss-variables
 
       - run: git status
 
