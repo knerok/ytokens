@@ -5,12 +5,10 @@
     "author": "knerok",
     "license": "MIT",
     "style": "dist/variables.scss",
-    "exports": {
-        "./dist/variables.scss": {
-            "import": "./dist/variables.scss",
-            "require": "./dist/variables.scss"
-        }
-    },
+    "main": "dist/variables.scss",
+    "files": [
+        "dist"
+    ],
     "scripts": {
         "build-scss-variables": "node build.js"
     },
