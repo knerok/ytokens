@@ -4,10 +4,8 @@
     "description": "Yclients design tokens",
     "author": "knerok",
     "license": "MIT",
+    "main": "dist/variables.scss",
     "style": "dist/variables.scss",
-    "files": [
-        "dist"
-    ],
     "scripts": {
         "build-scss-variables": "node build.js"
     },
