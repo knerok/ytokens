@@ -4,8 +4,6 @@
     "description": "Yclients design tokens",
     "author": "knerok",
     "license": "MIT",
-    "main": "dist/variables.scss",
-    "style": "dist/variables.scss",
     "files": [
         "dist/*.scss"
     ],
