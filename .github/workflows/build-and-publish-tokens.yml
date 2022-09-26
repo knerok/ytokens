@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
-        run: npm install
+      - run: npm install
 
       - name: Transform Figma Tokens JSON to something Style Dictionary can read
         run: npx token-transformer tokens.json tokens/input.json
@@ -50,7 +50,7 @@ jobs:
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
-        run: npm install
+      - run: npm install
 
       - name: Get cached tokens
         uses: actions/cache@v2
