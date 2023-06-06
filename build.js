@@ -1,6 +1,6 @@
 const StyleDictionary = require('style-dictionary').extend('config.json');
-const {ShadowTransform} = require('./transformers/ShadowTransform')
-const {TypographyTransform} = require('./transformers/TypographyTransform')
+const {ShadowTransform} = require('./transforms/ShadowTransform')
+const {TypographyTransform} = require('./transforms/TypographyTransform')
 
 StyleDictionary.registerTransform(ShadowTransform)
 StyleDictionary.registerTransform(TypographyTransform)
