@@ -4,6 +4,7 @@ on:
     paths:
       - 'tokens.json'
       - 'package.json'
+  workflow_dispatch:
 
 jobs:
   build:
