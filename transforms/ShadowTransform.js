@@ -8,7 +8,7 @@ const shadowTransformer = (token) => {
   const {x, y, blur, spread, color, type} = token.value
   const prefix = type === 'innerShadow' ? 'inset ' : ''
 
-  return `${prefix}${x}px ${y}px ${blur}px ${spread}px ${toRgba(color)}`
+  return `${prefix}${x} ${y} ${blur}px ${spread}px ${toRgba(color)}`
 }
 
 module.exports.ShadowTransform = {
