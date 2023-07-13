@@ -5,7 +5,8 @@
     "author": "knerok",
     "license": "MIT",
     "files": [
-        "dist/*.scss"
+        "dist/*.scss",
+        "dist/*.js"
     ],
     "scripts": {
         "transform-tokens": "npx token-transformer tokens.json tokens/input.json",
