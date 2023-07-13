@@ -1,5 +1,7 @@
 {
-  "source": ["tokens/**/*.json"],
+  "source": [
+    "tokens/**/*.json"
+  ],
   "platforms": {
     "scss": {
       "buildPath": "dist/",
@@ -8,6 +10,18 @@
         {
           "destination": "variables.scss",
           "format": "scss/variables"
+        }
+      ]
+    },
+    "js": {
+      "buildPath": "dist/",
+      "transforms": [
+        "name/cti/constant"
+      ],
+      "files": [
+        {
+          "destination": "variables.js",
+          "format": "javascript/es6"
         }
       ]
     }

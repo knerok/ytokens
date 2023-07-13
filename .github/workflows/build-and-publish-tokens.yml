@@ -21,10 +21,10 @@ jobs:
       - run: npm install
 
       - name: Transform Figma Tokens JSON to something Style Dictionary can read
-        run: npx token-transformer tokens.json tokens/input.json
+        run: npm run transform-tokens
 
       - name: Convert tokens according to Style Dictionary config
-        run: npm run build-scss-variables
+        run: npm run build
 
       - run: git status
 
