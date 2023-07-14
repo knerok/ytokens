@@ -1,16 +1,19 @@
 {
     "name": "@knerok/ytokens",
-    "version": "0.2.95",
+    "version": "0.2.97",
     "description": "Yclients design tokens",
     "author": "knerok",
     "license": "MIT",
     "files": [
-        "dist/*.scss"
+        "dist/*.scss",
+        "dist/*.js"
     ],
     "scripts": {
-        "build-scss-variables": "node build.js"
+        "transform-tokens": "npx token-transformer tokens.json tokens/input.json",
+        "build": "node build.js"
     },
     "devDependencies": {
-        "style-dictionary": "3.7.1"
+        "style-dictionary": "3.7.1",
+        "token-transformer": "0.0.33"
     }
 }
