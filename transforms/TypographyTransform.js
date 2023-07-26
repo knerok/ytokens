@@ -7,6 +7,11 @@ const toKebab = (str) => StyleDictionary.transform['name/cti/kebab'].transformer
 
 const isTypographyToken = (token) => token.type === 'typography';
 
+const typoographyFontWeightDict = {
+  'Regular': '400',
+  'Medium': '500',
+}
+
 const typographyTransformer = ({ value, name }) => {
   if (!value) return;
 
@@ -14,8 +19,13 @@ const typographyTransformer = ({ value, name }) => {
 
   const stringValue = entries.map(([key, value], idx) => {
     const separator = idx === entries.length - 1 ? '' : ';';
+    let transformedValue = value
 
-    return `$${name}-${toKebab(key)}: ${value}${separator}`
+    if (key === 'fontWeight') {
+      transformedValue = typoographyFontWeightDict[transformedValue];
+    }
+
+    return `$${name}-${toKebab(key)}: ${transformedValue}${separator}`
   }).join('\n');
 
   return `none;\n${stringValue}`;
